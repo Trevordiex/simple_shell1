@@ -5,35 +5,46 @@
 #include "main.h"
 
 /**
-* run_command - execs a command and returns
-* @exec_name: the string passed as argv[0]
-*
-* Return: 1 if execution is successful and 0 if successful with EOF else -1
-*/
+ * run_command - execs a command and returns
+ * @exec_name: the string passed as argv[0]
+ * @line: the string containing the command to execute
+ *
+ * Return: 1 if execution is successful and 0 if successful with EOF else -1
+ */
 int run_command(const char *exec_name, const char *line)
 {
-    pid_t child_pid;
-    char *vargs[] = {NULL, NULL};
-    int status;
+	pid_t child_pid;
+	char **vargs, **tokens, *command;
+	int status, argc;
+	path_t **paths, *path;
 
-    child_pid = fork();
-    if (child_pid == -1)
-    {
-        perror("fork");
-    }
-    if (child_pid == 0)
-    {
-        vargs[0] = (char *) line;
-        if (execve(line, vargs, NULL) == -1)
-        {
-            perror(exec_name);
-        }
-        exit(0);
-    }
-    else
-    {
-        wait(&status);
-    }
-    
-    return (1);
+	vargs = str_tok((char *) line, " ");
+	if (!vargs)
+		return (0);
+
+	command = _which(vargs[0]);
+	if (!command)
+	{
+		printf("%s: command not found\n", vargs[0]);
+		return (1);
+	}
+
+	child_pid = fork();
+	if (child_pid == -1)
+	{
+		perror("fork");
+	}
+	if (child_pid == 0)
+	{
+		if (execve(command, vargs, NULL) == -1)
+		{
+			perror(exec_name);
+		}
+		exit(0);
+	}
+	else
+	{
+		wait(&status);
+	}
+	return (1);
 }

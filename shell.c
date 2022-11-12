@@ -4,28 +4,40 @@
 #include "main.h"
 
 /**
-* main - A super simple shell
-* @Description: runs a single string command
-* 
-* Return: exit status
-*/
-int main(int argc, char **argv)
+ * main - A super simple shell
+ * @argc: the argument count
+ * @argv: argument vector - array of arguments
+ * @env: the current environment
+ *
+ * Description: runs command just as in a shell
+ *
+ * Return: exit status
+ */
+int main(int argc, char **argv, char **env)
 {
-    char *line = NULL;
-    size_t n = 0;
-    int end;
-    ssize_t len;
+	char *line = NULL;
+	size_t n = 0;
+	int end;
+	ssize_t len;
+	void (*cmd)(void);
 
+	do {
+		if (line)
+		{
+			if (line[len - 1] == '\n')
+				line[len - 1] = '\0';
 
-    while ((len = getline(&line, &n, stdin)) != -1)
-    {
-        if (line[len - 1] == '\n')
-        {
-            line[len - 1] = '\0';
-            len--;
-        }
+			cmd = get_builtin(line);
+			if (cmd)
+				(*cmd)();
+			else
+				run_command(argv[0], line);
+		}
 
-        if (run_command(argv[0], line))
-            printf("#cisfun$ ");
-    }
+		printf("#cisfun$ ");
+		len = getline(&line, &n, stdin);
+	} while (len != -1);
+
+	free(line);
+	exit(EXIT_SUCCESS);
 }
