@@ -3,18 +3,23 @@
 #include "main.h"
 
 /**
- * startswith - compares two string for equality
- * @str: the string to test its prefix
- * @prefix: the prefix to test in strings
+ * _memcpy - copies a characters from src memory area to target mem area
+ * @dest: destination mem area
+ * @src: source mem area
+ * @n: number of characters to copy
  *
- * Return: 1 if equal else 0
+ * Return: returns thea address of dest
  */
-int startswith(char *str, char *prefix)
+
+char *_memcpy(char *dest, char *src, unsigned int n)
 {
-	if (strncmp(prefix, str, strlen(prefix)) == 0)
-		return (1);
-	else
-		return (0);
+	char *tmp;
+
+	tmp = dest;
+	while (n--)
+		*tmp++ = *src++;
+
+	return (dest);
 }
 
 /**
@@ -28,12 +33,12 @@ char *malloc_str(char *str)
 	size_t len;
 	char *line;
 
-	len = strlen(str);
+	len = _strlen(str);
 	line = malloc(sizeof(*line) * len + 1);
 	if (!line)
 		return (NULL);
 
-	memcpy(line, str, len);
+	_memcpy(line, str, len);
 	line[len] = '\0';
 
 	return (line);
@@ -82,3 +87,26 @@ int is_equal(char *s1, char *s2)
 		return (1);
 	return (0);
 }
+
+
+/**
+ * _strlen - calculates the length of a string
+ * @str: the string to calculate the length
+ *
+ * Return: returns the length of the string
+ */
+
+size_t _strlen(char *str)
+{
+	size_t length;
+
+	length = 0;
+	while (*str)
+	{
+		length++;
+		str++;
+	}
+
+	return (length);
+}
+

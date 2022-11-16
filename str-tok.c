@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "main.h"
 
 /**
  * str_tok - splits a string into an tokens at delimiter and return array
@@ -19,13 +20,13 @@ char **str_tok(char *str, char *sep)
 	size = 5;
 	i = 0;
 
-	len = strlen(str);
+	len = _strlen(str);
 	line = malloc(sizeof(*line) * (len + 1));
 	tokens = malloc(sizeof(char *) * size);
 	if (!tokens || !line)
 		return (NULL);
 
-	line = memcpy(line, str, len);
+	line = _memcpy(line, str, len);
 	line[len] = '\0';
 	token = strtok(line, sep);
 	while (token)

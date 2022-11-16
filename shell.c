@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include "main.h"
 
@@ -34,10 +35,12 @@ int main(int argc, char **argv, char **env)
 				run_command(argv[0], line);
 		}
 
-		printf("#cisfun$ ");
+		if (isatty(fileno(stdin)))
+			print("$ ", "");
 		len = getline(&line, &n, stdin);
 	} while (len != -1);
 
 	free(line);
 	exit(EXIT_SUCCESS);
 }
+

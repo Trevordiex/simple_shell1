@@ -25,7 +25,7 @@ int run_command(const char *exec_name, const char *line)
 	command = _which(vargs[0]);
 	if (!command)
 	{
-		printf("%s: command not found\n", vargs[0]);
+		print("%s: command not found\n", vargs[0]);
 		return (1);
 	}
 

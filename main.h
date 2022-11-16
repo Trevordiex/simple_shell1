@@ -33,14 +33,17 @@ int _setenv(const char *name, const char *value, int overwrite);
 path_t *build_path_list(void);
 void free_path_list(path_t *);
 char *_which(char *);
+int print(char *string, char *sub);
 
 /* builtins.h */
 void *get_builtin(char *);
 
 
-/* utils */
-int startswith(char *, char *);
+/* string.h */
 int _strcmp(char *s1, char *s2);
 int is_equal(char *s1, char *s2);
 char *malloc_str(char *);
+char *_memcpy(char *dest, char *src, unsigned int n);
+size_t _strlen(char *str);
+
 #endif

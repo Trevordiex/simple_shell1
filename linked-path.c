@@ -21,7 +21,7 @@ path_t *build_path_list(void)
 	paths = str_tok(PATH, ":");
 	if (!paths)
 	{
-		printf("Could not tokenize path\n");
+		print("Could not tokenize path\n", "");
 		exit(98);
 	}
 	head = malloc(sizeof(path_t));

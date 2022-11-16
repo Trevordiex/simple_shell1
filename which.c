@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
 #include <sys/stat.h>
 #include "main.h"
@@ -15,7 +14,7 @@ char *_which(char *bin)
 {
 	path_t *path;
 	char *filename;
-	size_t len;
+	size_t len, len_bin, len_path;
 	struct stat st;
 
 	if (bin[0] == '/')
@@ -35,23 +34,24 @@ char *_which(char *bin)
 		path = build_path_list();
 		if (!path)
 		{
-			printf("couldnt build path list\n");
+			print("couldnt build path list\n", "");
 			exit(1);
 		}
 		while (path->next)
 		{
-			len = strlen(path->path) + strlen(bin) + 2;
+			len_path = _strlen(path->path);
+			len_bin = _strlen(bin);
+			len = len_path + len_bin + 2;
 			filename = malloc(sizeof(*filename) * len);
-			memcpy(filename, path->path, strlen(path->path));
-			strcat(filename, "/");
-			strcat(filename, bin);
+			_memcpy(filename, path->path, len_path);
+			_memcpy(filename + len_path, "/", 1);
+			_memcpy(filename + len_path + 1, bin, len_bin);
 			filename[len] = '\0';
 
 			if (stat(filename, &st) == 0)
 				return (filename);
-			else
-				free(filename);
 
+			free(filename);
 			path = path->next;
 		}
 		return (NULL);

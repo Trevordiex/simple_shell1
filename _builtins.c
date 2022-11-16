@@ -14,7 +14,7 @@ void env(void)
 
 	for (i = 0; environ[i]; i++)
 	{
-		printf("%s\n", environ[i]);
+		print("%s\n", environ[i]);
 	}
 }
 
