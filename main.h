@@ -24,7 +24,7 @@ typedef struct path
 typedef struct env
 {
 	char *name;
-	cmd cmd;
+	void (* cmd)(void);
 } env_builtin;
 
 typedef void (*cmd)(void);

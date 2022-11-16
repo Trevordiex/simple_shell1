@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 				run_command(argv[0], line);
 		}
 
-		if (isatty(fileno(stdin)))
+		if (isatty(STDIN_FILENO))
 			print("$ ", "");
 		len = getline(&line, &n, stdin);
 	} while (len != -1);
