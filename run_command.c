@@ -11,10 +11,10 @@
  *
  * Return: 1 if execution is successful and 0 if successful with EOF else -1
  */
-int run_command(const char *exec_name, const char *line)
+int run_command(const char *exec_name, const char *line, int num)
 {
 	pid_t child_pid;
-	char **vargs, *command;
+	char **vargs, *command, *exec;
 	int status;
 
 	vargs = str_tok((char *) line, " ");
@@ -24,7 +24,11 @@ int run_command(const char *exec_name, const char *line)
 	command = _which(vargs[0]);
 	if (!command)
 	{
-		print("%s: command not found\n", vargs[0]);
+		exec = (char *) exec_name;
+		print(exec, "");
+		print(": ", "");
+		itos(num);
+		print(": %s: not found\n", vargs[0]);
 		return (1);
 	}
 

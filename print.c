@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdlib.h>
 #include "main.h"
 
 /**
@@ -29,3 +30,41 @@ int print(char *string, char *sub)
 	return (i);
 }
 
+/**
+ * itos - prints out a number as a sequence of characters
+ * @n: the number to print
+ * @c: the count of characters printed
+ *
+ * Return: c else exit with error code 50
+ */
+void itos(int n)
+{
+	int i;
+	char ch[2];
+
+	if (n < 0)
+	{
+		i = write(1, "-", 1);
+		if (i < 0)
+		{
+			write(2, "Error: write failed\n", 20);
+			exit(50);
+		}
+
+		itos(-n);
+	}
+	else
+	{
+		if (n > 10)
+			itos(n / 10);
+
+		ch[0] = '0' + (n % 10);
+		ch[1] = '\0';
+		i = write(1, ch, 1);
+		if (i < 0)
+		{
+			write(2, "Error: write failed\n", 20);
+			exit(50);
+		}
+	}
+}

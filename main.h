@@ -29,13 +29,14 @@ typedef struct env
 
 typedef void (*cmd)(void);
 
-int run_command(const char *, const char *);
+int run_command(const char *, const char *, int);
 char **str_tok(char *, char *);
 int _setenv(const char *name, const char *value, int overwrite);
 path_t *build_path_list(void);
 void free_path_list(path_t *);
 char *_which(char *);
 int print(char *string, char *sub);
+void itos(int n);
 
 /* builtins.h */
 cmd get_builtin(char *);

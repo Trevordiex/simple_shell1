@@ -20,8 +20,10 @@ int main(int argc, char **argv)
 	size_t n = 0;
 	ssize_t len;
 	void (*cmd)(void);
+	int num;
 
 	argc++;
+	num = 0;
 	do {
 		if (line)
 		{
@@ -32,12 +34,13 @@ int main(int argc, char **argv)
 			if (cmd)
 				(*cmd)();
 			else
-				run_command(argv[0], line);
+				run_command(argv[0], line, num);
 		}
 
 		if (isatty(STDIN_FILENO))
-			print("$ ", "");
+			print("($) ", "");
 		len = getline(&line, &n, stdin);
+		num++;
 	} while (len != -1);
 
 	free(line);
