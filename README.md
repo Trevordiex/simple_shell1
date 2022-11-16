@@ -1,1 +1,1 @@
-A simple shell project written by Dollars Dollars and Leonard Eze using C programming language
+A simple shell project written in C programming language by Leonard Eze and Dollars Dollars
