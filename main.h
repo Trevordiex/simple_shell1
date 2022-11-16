@@ -21,12 +21,13 @@ typedef struct path
  *
  * Description: gives every builtin function a name for search purposes
  */
-typedef void (*cmd)(void);
 typedef struct env
 {
 	char *name;
 	cmd cmd;
 } env_builtin;
+
+typedef void (*cmd)(void);
 
 int run_command(const char *, const char *);
 char **str_tok(char *, char *);
