@@ -34,7 +34,7 @@ void _exit_(void)
  *
  * Return: returns a function pointer if exists or NULL
  */
-void *get_builtin(char *name)
+cmd get_builtin(char *name)
 {
 	env_builtin builtins[] = {
 		{"env", env},

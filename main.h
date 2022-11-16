@@ -21,10 +21,11 @@ typedef struct path
  *
  * Description: gives every builtin function a name for search purposes
  */
+typedef void (*cmd)(void);
 typedef struct env
 {
 	char *name;
-	void (*cmd)(void);
+	cmd cmd;
 } env_builtin;
 
 int run_command(const char *, const char *);
@@ -36,7 +37,7 @@ char *_which(char *);
 int print(char *string, char *sub);
 
 /* builtins.h */
-void *get_builtin(char *);
+cmd get_builtin(char *);
 
 
 /* string.h */

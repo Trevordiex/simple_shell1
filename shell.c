@@ -14,14 +14,14 @@
  *
  * Return: exit status
  */
-int main(int argc, char **argv, char **env)
+int main(int argc, char **argv)
 {
 	char *line = NULL;
 	size_t n = 0;
-	int end;
 	ssize_t len;
 	void (*cmd)(void);
 
+	argc++;
 	do {
 		if (line)
 		{

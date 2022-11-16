@@ -14,9 +14,8 @@
 int run_command(const char *exec_name, const char *line)
 {
 	pid_t child_pid;
-	char **vargs, **tokens, *command;
-	int status, argc;
-	path_t **paths, *path;
+	char **vargs, *command;
+	int status;
 
 	vargs = str_tok((char *) line, " ");
 	if (!vargs)

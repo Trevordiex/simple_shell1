@@ -13,9 +13,8 @@ path_t *build_path_list(void)
 {
 	path_t *head;
 	path_t *curr, *next;
-	char **paths, *path, *path_str, *PATH;
+	char **paths, *PATH;
 	int i;
-	size_t len;
 
 	PATH = getenv("PATH");
 	paths = str_tok(PATH, ":");
