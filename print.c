@@ -3,11 +3,11 @@
 #include "main.h"
 
 /**
- * print - checks for a string in an array
- * @string: the format string
- * @sub: the string to substitute
+ * print - checks for a string in an array.
+ * @string: the format string.
+ * @sub: the string to substitute.
  *
- * Return: number of characters printed
+ * Return: number of characters printed.
  */
 
 int print(char *string, char *sub)
