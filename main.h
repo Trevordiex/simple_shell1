@@ -29,7 +29,7 @@ typedef struct env
 
 typedef void (*cmd)(void);
 
-int run_command(const char *, const char *, int);
+int run_command(const char *, const char *, char **);
 char **str_tok(char *, char *);
 int _setenv(const char *name, const char *value, int overwrite);
 path_t *build_path_list(void);
