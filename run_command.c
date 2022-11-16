@@ -17,7 +17,7 @@ int run_command(const char *exec_name, const char *line, char **env)
 	char **vargs, *command;
 	int status;
 
-	vargs = str_tok((char *) line, " ");
+	vargs = str_tok((char *) line, " \n\t");
 	if (!vargs)
 		return (0);
 

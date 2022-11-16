@@ -33,7 +33,7 @@ char **str_tok(char *str, char *sep)
 	{
 		tokens[i] = token;
 		i++;
-		token = strtok(0, sep);
+		token = strtok(NULL, sep);
 
 		if (size - 1 <= i)
 		{
