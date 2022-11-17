@@ -8,6 +8,7 @@
  * run_command - execs a command and returns
  * @exec_name: the string passed as argv[0]
  * @line: the string containing the command to execute
+ * @env: the environment of the current process
  *
  * Return: 1 if execution is successful and 0 if successful with EOF else -1
  */

@@ -33,7 +33,6 @@ int print(char *string, char *sub)
 /**
  * itos - prints out a number as a sequence of characters
  * @n: the number to print
- * @c: the count of characters printed
  *
  * Return: c else exit with error code 50
  */

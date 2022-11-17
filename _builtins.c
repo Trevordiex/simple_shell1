@@ -4,27 +4,29 @@
 
 /**
  * env - prints the current environment
+ * @env: the environment of the current process
  *
  * Return: void
  */
-void env(void)
+void env(char **env)
 {
-	extern char **environ;
 	int i;
 
-	for (i = 0; environ[i]; i++)
+	for (i = 0; env[i]; i++)
 	{
-		print("%s\n", environ[i]);
+		print("%s\n", env[i]);
 	}
 }
 
 /**
  * _exit_ - termiates the calling process normally
+ * @env: the environment of the current process
  *
  * Return: void
  */
-void _exit_(void)
+void _exit_(char **env)
 {
+	env++;
 	exit(0);
 }
 

@@ -32,11 +32,6 @@ char *_which(char *bin)
 	else
 	{
 		path = build_path_list();
-		if (!path)
-		{
-			print("couldnt build path list\n", "");
-			exit(1);
-		}
 		while (path->next)
 		{
 			len_path = _strlen(path->path);
@@ -50,7 +45,6 @@ char *_which(char *bin)
 
 			if (stat(filename, &st) == 0)
 				return (filename);
-
 			free(filename);
 			path = path->next;
 		}

@@ -27,10 +27,10 @@ typedef struct path
 typedef struct env
 {
 	char *name;
-	void (* cmd)(void);
+	void (* cmd)(char **);
 } env_builtin;
 
-typedef void (*cmd)(void);
+typedef void (*cmd)(char **);
 
 int run_command(const char *, const char *, char **);
 char **str_tok(char *, char *);

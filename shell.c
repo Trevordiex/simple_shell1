@@ -20,25 +20,27 @@ int main(int argc, char **argv, char **env)
 	char *line = NULL;
 	size_t n = 0;
 	ssize_t len;
-	void (*cmd)(void);
+	void (*cmd)(char **environ);
+
 	argc++;
 	do {
-		 if (line)
-		 {
-			 if (line[len - 1] == '\n')
-				  line[len - 1] = '\0';
+		if (line)
+		{
+			if (line[len - 1] == '\n')
+				line[len - 1] = '\0';
 
-			 cmd = get_builtin(line);
-			 if (cmd)
-				 (*cmd)();
-			 else
-				 run_command(argv[0], line, env);
-		 }
+			cmd = get_builtin(line);
+			if (cmd)
+				(*cmd)(env);
+			else
+				run_command(argv[0], line, env);
+		}
 
-		 if (isatty(STDIN_FILENO))
-			 print("#cisfun$ ", "");
-		 len = getline(&line, &n, stdin);
-		   } while (len != -1);
+		if (isatty(STDIN_FILENO))
+			print("#cisfun$ ", "");
+		len = getline(&line, &n, stdin);
+	} while (len != -1);
 
-	 free(line);
-	 exit(EXIT_SUCCESS);
+	free(line);
+	exit(EXIT_SUCCESS);
+}
